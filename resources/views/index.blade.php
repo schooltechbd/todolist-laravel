@@ -10,7 +10,7 @@
         @foreach ($todos as $todo)
         <div class="card m-3">
             <h3><a href="todos/{{ $todo->id }}">{{ $todo->title }}</a></h3>
-            <h4>{{ $todo->due }}</h4>
+            <h4 class="badge bg-danger">{{ $todo->due }}</h4>
          </div>
         @endforeach
    

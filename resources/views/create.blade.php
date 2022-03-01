@@ -13,7 +13,7 @@
         <input type="text" class="form-control" name="content" id="content"  placeholder="{{ old('content') }}">
     </div>
     <div class="form-group">
-        <label for="exampleInputEmail1">Title</label>
+        <label for="exampleInputEmail1">Due</label>
         <input type="text" class="form-control" name="due" id="due"  placeholder="{{ old('due') }}">
     </div>
 
