@@ -8,6 +8,8 @@
     <title>Todo list</title>
 </head>
 <body>
+    @include('inc.nav')
+    @include('inc.messages')
     <div class="container">
         @yield('content')
     </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\todo;
+use App\Models\Todo as ModelsTodo;
 use Illuminate\Http\Request;
 
 class ToDoController extends Controller
@@ -14,7 +15,7 @@ class ToDoController extends Controller
      */
     public function index()
     {
-        $todos = todo::get();
+        $todos = todo::orderBy('created_at', 'desc')->get();
        
         return view('index')->with('todos', $todos);
     }
@@ -26,7 +27,7 @@ class ToDoController extends Controller
      */
     public function create()
     {
-        //
+       return view('create');
     }
 
     /**
@@ -37,7 +38,21 @@ class ToDoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       $this->validate(
+        $request,
+        [
+            'title'=> 'required',
+            'content'=> 'required',
+            'due'=> 'required'
+
+        ]
+       );
+       $todo = new Todo();
+       $todo->title = $request->input('title');
+       $todo->content = $request->input('content');
+       $todo->due = $request->input('due');
+       $todo->save();
+       return redirect('/')->with('success', 'Todo seccessfully crated');
     }
 
     /**
@@ -48,7 +63,8 @@ class ToDoController extends Controller
      */
     public function show($id)
     {
-        //
+        $todo = Todo::find($id);
+        return view('show')->with('todo', $todo);
     }
 
     /**
